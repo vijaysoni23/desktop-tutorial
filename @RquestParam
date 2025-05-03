@@ -1,0 +1,30 @@
+package com.example.demo.controller;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class UserController {
+    @GetMapping("/name")
+    public String getName(@RequestParam("un") String un) {
+        return un;
+    }
+    @GetMapping("/UserId")
+    public String getId(@RequestParam(required = false) String id) {
+        List<String> a1 = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            a1.add(String.valueOf(i));
+        }
+        if (id != null) {
+            for (String s : a1) {
+                if (s.equals(id)) {
+                    return s;
+                }
+            }
+            return "";
+        }
+        return a1.toString();
+    }
+}
